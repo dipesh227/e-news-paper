@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { ThemeProvider } from "@/components/providers"
 import { NavBar } from "@/components/navigation/nav-bar"
+import { Footer } from "@/components/footer"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -17,6 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "E-News Paper",
   description: "Your daily news platform",
+  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
 }
 
 export default function RootLayout({
@@ -40,6 +42,7 @@ export default function RootLayout({
             <main className="flex-1">
               {children}
             </main>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>

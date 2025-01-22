@@ -3,6 +3,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { ChevronRight } from "lucide-react"
+import Image from "next/image"
 
 interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string
@@ -61,7 +62,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
   (
     {
       className,
-      title = "Your Trusted E-News Platform",
+      title = "Your Digital News Platform",
       subtitle = {
         regular: "Stay informed with ",
         gradient: "breaking news and in-depth stories",
@@ -70,8 +71,8 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       ctaText = "Start Reading",
       ctaHref = "/news",
       bottomImage = {
-        light: "/news-preview-light.png",
-        dark: "/news-preview-dark.png",
+        light: "/vercel.svg", // Fallback to Next.js default images
+        dark: "/next.svg",
       },
       gridOptions,
       ...props
@@ -114,16 +115,28 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
             </div>
             {bottomImage && (
               <div className="mt-32 mx-10 relative z-10">
-                <img
-                  src={bottomImage.light}
-                  className="w-full shadow-lg rounded-lg border border-gray-200 dark:hidden"
-                  alt="E-News Preview"
-                />
-                <img
-                  src={bottomImage.dark}
-                  className="hidden w-full shadow-lg rounded-lg border border-gray-800 dark:block"
-                  alt="E-News Preview"
-                />
+                <div className="w-full max-h-[400px] overflow-hidden rounded-lg border border-border">
+                  <div className="dark:hidden">
+                    <Image
+                      src={bottomImage.light}
+                      alt="Preview"
+                      width={1200}
+                      height={600}
+                      priority
+                      className="w-full object-cover"
+                    />
+                  </div>
+                  <div className="hidden dark:block">
+                    <Image
+                      src={bottomImage.dark}
+                      alt="Preview"
+                      width={1200}
+                      height={600}
+                      priority
+                      className="w-full object-cover"
+                    />
+                  </div>
+                </div>
               </div>
             )}
           </div>

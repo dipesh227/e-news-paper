@@ -20,8 +20,11 @@ export function NavBar({ className }: NavBarProps) {
 
   return (
     <>
-      <DesktopNav className={className} />
-      <MobileNav className={className} />
+      {isMobile ? (
+        <MobileNav className={className} />
+      ) : (
+        <DesktopNav className={className} />
+      )}
     </>
   )
 }

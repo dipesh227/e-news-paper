@@ -3,7 +3,7 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Home, Newspaper, Bell, Book, Search, TrendingUp, ChevronDown } from "lucide-react"
+import { Home, Newspaper, Bell, Book, Search, TrendingUp, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserProfile } from "./user-profile"
@@ -95,21 +95,24 @@ function SubMenu({ items, show, onClose }: SubMenuProps) {
           transition={{ duration: 0.2 }}
           className="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 px-4"
         >
-          <div className="relative w-[320px] overflow-hidden rounded-xl border border-border bg-background/80 p-2 shadow-lg backdrop-blur-lg">
+          <div className="relative w-[320px] overflow-hidden rounded-xl border border-border/40 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 p-2 shadow-lg">
             <div className="absolute inset-x-0 h-px -top-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
             {items.map((item) => (
               <Link
                 key={item.name}
                 href={item.url}
                 onClick={onClose}
-                className="block rounded-lg px-4 py-3 hover:bg-primary/5 transition-colors"
+                className="flex items-start space-x-2 rounded-lg px-3 py-2.5 hover:bg-primary/5 transition-colors duration-200"
               >
-                <div className="text-sm font-medium">{item.name}</div>
-                {item.description && (
-                  <div className="mt-1 text-xs text-muted-foreground">
-                    {item.description}
-                  </div>
-                )}
+                <div className="space-y-1">
+                  <div className="text-sm font-medium leading-none">{item.name}</div>
+                  {item.description && (
+                    <div className="line-clamp-1 text-xs text-muted-foreground">
+                      {item.description}
+                    </div>
+                  )}
+                </div>
+                <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
               </Link>
             ))}
             <div className="absolute inset-x-0 h-px -bottom-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
@@ -134,7 +137,7 @@ export function DesktopNav({ className }: NavBarProps) {
 
   return (
     <div className={cn(
-      "hidden md:block fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border",
+      "hidden md:block fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-b border-border/40",
       className
     )}>
       <div className="container mx-auto">
@@ -165,16 +168,16 @@ export function DesktopNav({ className }: NavBarProps) {
                         }
                       }}
                       className={cn(
-                        "relative flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-colors",
-                        "text-foreground/60 hover:text-primary",
-                        isActive && "text-primary"
+                        "relative flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-full transition-all duration-200",
+                        "text-foreground/60 hover:text-foreground",
+                        isActive && "text-foreground"
                       )}
                     >
                       <Icon className="h-4 w-4" />
                       <span>{item.name}</span>
                       {itemHasSubmenu && (
                         <ChevronDown className={cn(
-                          "h-4 w-4 transition-transform",
+                          "h-4 w-4 transition-transform duration-200",
                           openSubmenu === item.name && "rotate-180"
                         )} />
                       )}
@@ -211,7 +214,7 @@ export function DesktopNav({ className }: NavBarProps) {
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="h-5 w-px bg-border" />
+            <div className="h-5 w-px bg-border/40" />
             <ModeToggle />
             <UserProfile user={user} />
           </div>
