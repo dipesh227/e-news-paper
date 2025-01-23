@@ -3,13 +3,13 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { Home, Newspaper, Bell, User, Bookmark, Menu, X } from "lucide-react"
+import { Home, Newspaper, Bell, User, Book, Menu, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserProfile } from "./user-profile"
 import { NavBarProps, NavItem } from "./types"
+import { Button } from "@/components/ui/button"
 
-// Mobile-specific navigation items
 const mainNavItems: NavItem[] = [
   {
     name: "News",
@@ -19,7 +19,7 @@ const mainNavItems: NavItem[] = [
   {
     name: "Bookmarks",
     url: "/bookmarks",
-    icon: Bookmark
+    icon: Book
   },
   {
     name: "Home",
@@ -38,7 +38,6 @@ const mainNavItems: NavItem[] = [
   }
 ]
 
-// Mobile menu items
 const menuItems = [
   {
     name: "Latest News",
@@ -83,7 +82,7 @@ export function MobileNav({ className }: NavBarProps) {
     <>
       {/* Header */}
       <div className={cn(
-        "sm:hidden fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/80",
+        "sm:hidden fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/80 border-b border-border/40",
         className
       )}>
         <div className="container mx-auto px-4">
@@ -93,22 +92,19 @@ export function MobileNav({ className }: NavBarProps) {
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 whileHover={{ scale: 1.05 }}
-                className="text-xl font-bold bg-gradient-to-r from-primary/90 via-purple-500 to-purple-600 bg-clip-text text-transparent"
+                className="text-xl font-bold bg-gradient-to-r from-primary/90 to-purple-600 bg-clip-text text-transparent"
               >
-                E-News
+                E-News Paper
               </motion.span>
             </Link>
             <div className="flex items-center gap-2">
               {isAuthenticated ? (
                 <UserProfile user={user} />
               ) : (
-                <Link
-                  href="/login"
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full transition-colors hover:bg-primary/5 text-primary"
-                >
-                  <User size={18} />
-                  <span>Login</span>
-                </Link>
+                <Button href="/login" variant="ghost" size="icon">
+                  <User size={18} className="mr-2" />
+                  Login
+                </Button>
               )}
               <ModeToggle />
               <button
@@ -134,6 +130,20 @@ export function MobileNav({ className }: NavBarProps) {
           >
             <div className="h-full overflow-y-auto">
               <div className="container mx-auto py-4 px-4">
+                {/* Brand Section */}
+                <div className="mb-6">
+                  <div className="flex flex-col items-center space-y-2 p-4 rounded-lg bg-gradient-to-br from-primary/5 to-purple-500/5">
+                    <motion.div
+                      initial={{ scale: 0.95 }}
+                      animate={{ scale: 1 }}
+                      className="text-2xl font-bold bg-gradient-to-r from-primary/90 via-purple-500 to-purple-600 bg-clip-text text-transparent"
+                    >
+                      E-News Paper
+                    </motion.div>
+                    <p className="text-xs text-center text-muted-foreground">Your Digital News Platform</p>
+                  </div>
+                </div>
+
                 <nav className="space-y-1.5">
                   {menuItems.map((item, index) => (
                     <motion.div
@@ -158,20 +168,6 @@ export function MobileNav({ className }: NavBarProps) {
                   ))}
                 </nav>
 
-                {/* Brand Section */}
-                <div className="mt-6 px-4">
-                  <div className="flex flex-col items-center space-y-2 p-4 rounded-lg bg-gradient-to-br from-primary/5 to-purple-500/5">
-                    <motion.div
-                      initial={{ scale: 0.95 }}
-                      animate={{ scale: 1 }}
-                      className="text-2xl font-bold bg-gradient-to-r from-primary/90 via-purple-500 to-purple-600 bg-clip-text text-transparent"
-                    >
-                      E-News
-                    </motion.div>
-                    <p className="text-xs text-center text-muted-foreground">Your daily source for news and updates</p>
-                  </div>
-                </div>
-
                 {!isAuthenticated && (
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -179,16 +175,15 @@ export function MobileNav({ className }: NavBarProps) {
                     transition={{ delay: 0.2 }}
                     className="mt-4 px-4"
                   >
-                    <Link
+                    <Button
                       href="/register"
-                      className="block w-full px-4 py-3 text-center text-sm rounded-lg bg-primary/10 hover:bg-primary/15 active:bg-primary/20 text-primary font-medium transition-all duration-200 hover:scale-[0.98]"
+                      className="w-full"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       Create Account
-                    </Link>
+                    </Button>
                   </motion.div>
                 )}
-
               </div>
             </div>
           </motion.div>
@@ -239,21 +234,21 @@ export function MobileNav({ className }: NavBarProps) {
 }
 
 interface NavButtonProps {
-  item: NavItem;
-  isActive: boolean;
-  onClick: () => void;
-  className?: string;
+  item: NavItem
+  isActive: boolean
+  onClick: () => void
+  className?: string
 }
 
-const NavButton: React.FC<NavButtonProps> = ({ item, isActive, onClick, className }) => {
-  const Icon = item.icon!;
+const NavButton = ({ item, isActive, onClick, className }: NavButtonProps) => {
+  const Icon = item.icon!
 
   return (
     <Link
       href={item.url}
       onClick={(e) => {
-        e.preventDefault();
-        onClick();
+        e.preventDefault()
+        onClick()
       }}
       className={cn(
         "relative flex flex-col items-center justify-center mx-auto",

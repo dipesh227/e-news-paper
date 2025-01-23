@@ -12,6 +12,7 @@ const QUICK_LINKS = [
   { href: "/news", label: "News" },
   { href: "/explore", label: "Explore" },
   { href: "/discover", label: "Discover" },
+  { href: "/about", label: "About Us" },
 ]
 
 const FOOTER_LINKS = [
@@ -33,53 +34,58 @@ export function Footer() {
     const email = new FormData(form).get("email")
 
     if (!email) return
-
-    // TODO: Implement newsletter subscription
     console.log("Subscribe:", email)
     form.reset()
   }
 
   return (
-    <footer className="relative border-t bg-background text-foreground">
-      <div className="container mx-auto px-4 py-12 md:px-6 lg:px-8">
+    <footer className="relative border-t border-border">
+      <div className="container max-w-7xl mx-auto px-4 pt-16 pb-8 md:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="relative lg:col-span-1">
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-3xl font-bold bg-gradient-to-r from-primary/90 to-purple-600 bg-clip-text text-transparent">
-                E-News Paper
+            <Link href="/" className="inline-block mb-6 group">
+              <span className="text-3xl font-bold relative">
+                <span className="absolute inset-0 bg-gradient-to-r from-primary via-info to-primary bg-[length:200%] animate-shimmer bg-clip-text text-transparent">
+                  E-News Paper
+                </span>
+                <span className="relative bg-gradient-to-r from-primary to-info bg-clip-text text-transparent group-hover:opacity-0 transition-opacity duration-300">
+                  E-News Paper
+                </span>
               </span>
             </Link>
             <p className="mb-6 text-muted-foreground">
               Your trusted source for the latest news and updates. Stay informed with our comprehensive coverage.
             </p>
-            <form onSubmit={handleSubscribe} className="relative">
-              <Input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                className="pr-12 backdrop-blur-sm"
-                required
-              />
-              <Button
-                type="submit"
-                size="icon"
-                className="absolute right-1 top-1 h-8 w-8 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 hover:scale-105"
-              >
-                <Send className="h-4 w-4" />
-                <span className="sr-only">Subscribe</span>
-              </Button>
+            <form onSubmit={handleSubscribe} className="relative max-w-md">
+              <div className="relative group">
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  className="pr-12 transition-colors bg-background border-border hover:border-primary focus:border-primary"
+                  required
+                />
+                <Button
+                  type="submit"
+                  variant="icon"
+                  size="icon"
+                  className="absolute right-1 top-1 hover:scale-105 transition-transform"
+                >
+                  <Send className="h-3.5 w-3.5" />
+                  <span className="sr-only">Subscribe</span>
+                </Button>
+              </div>
             </form>
-            <div className="absolute -right-4 top-0 h-24 w-24 rounded-full bg-primary/10 blur-2xl" />
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
-            <nav className="space-y-2 text-sm">
+            <h3 className="mb-4 text-lg font-medium">Quick Links</h3>
+            <nav className="grid gap-2 text-sm">
               {QUICK_LINKS.map(({ href, label }) => (
                 <Link
                   key={href}
                   href={href}
-                  className="block transition-all duration-200 hover:text-primary hover:translate-x-1"
+                  className="w-fit relative after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-gradient-to-r after:from-primary/60 after:via-info/60 after:to-primary/60 hover:after:w-full after:transition-all after:duration-300 hover:text-foreground"
                 >
                   {label}
                 </Link>
@@ -88,38 +94,40 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-lg font-semibold">Contact Info</h3>
-            <address className="space-y-2 text-sm not-italic">
-              <p className="flex items-center gap-2 transition-all duration-200 hover:translate-x-1">
+            <h3 className="mb-4 text-lg font-medium">Contact Info</h3>
+            <address className="space-y-3 text-sm not-italic">
+              <p className="flex items-center gap-2 text-muted-foreground">
                 <MapPin className="h-4 w-4 text-primary" />
-                Khatima, U.S.Nagar, Uttarakhand
+                <span>Khatima, U.S.Nagar, Uttarakhand</span>
               </p>
               <p className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-primary" />
-                <a href="mailto:dipeshjoshi227@gmail.com" className="hover:text-primary transition-colors hover:translate-x-1">
+                <Link href="mailto:dipeshjoshi227@gmail.com" className="relative text-muted-foreground hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-gradient-to-r after:from-primary/60 after:via-info/60 after:to-primary/60 hover:after:w-full after:transition-all after:duration-300">
                   dipeshjoshi227@gmail.com
-                </a>
+                </Link>
               </p>
               <p className="flex items-center gap-2">
                 <Phone className="h-4 w-4 text-primary" />
-                <a href="tel:+918630484930" className="hover:text-primary transition-colors hover:translate-x-1">
+                <Link href="tel:+918630484930" className="relative text-muted-foreground hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-gradient-to-r after:from-primary/60 after:via-info/60 after:to-primary/60 hover:after:w-full after:transition-all after:duration-300">
                   +91 86304 84930
-                </a>
+                </Link>
               </p>
             </address>
 
-            <div className="mt-4 space-y-2 text-sm">
-              <p className="flex items-center gap-2 transition-all duration-200 hover:translate-x-1">
-                <span className="text-primary">🔭</span> Working on: AI Image Generation
+            <div className="mt-6 space-y-3 text-sm">
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <span className="text-success">🔭</span>
+                <span>AI Image Generation Projects</span>
               </p>
-              <p className="flex items-center gap-2 transition-all duration-200 hover:translate-x-1">
-                <span className="text-primary">🌱</span> Learning: AI/ML & Cloud Dev
+              <p className="flex items-center gap-2 text-muted-foreground">
+                <span className="text-info">🌱</span>
+                <span>Learning AI/ML & Cloud Dev</span>
               </p>
             </div>
           </div>
 
           <div className="relative">
-            <h3 className="mb-4 text-lg font-semibold">Connect With Me</h3>
+            <h3 className="mb-4 text-lg font-medium">Connect With Me</h3>
             <TooltipProvider>
               <div className="mb-6 flex space-x-4">
                 {SOCIAL_LINKS.map(({ href, label, icon }) => (
@@ -135,16 +143,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t pt-8 text-center md:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 text-center md:flex-row">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} E-News Paper. All rights reserved.
           </p>
-          <nav className="flex gap-4 text-sm">
+          <nav className="flex gap-6 text-sm">
             {FOOTER_LINKS.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
-                className="transition-all duration-200 hover:text-primary hover:scale-105"
+                className="relative text-muted-foreground hover:text-foreground after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-gradient-to-r after:from-primary/60 after:via-info/60 after:to-primary/60 hover:after:w-full after:transition-all after:duration-300"
               >
                 {label}
               </Link>

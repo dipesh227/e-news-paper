@@ -3,15 +3,14 @@
 import React, { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Link from "next/link"
-import { usePathname } from "next/navigation"
 import { Home, Newspaper, Search, TrendingUp, ChevronDown, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { ModeToggle } from "@/components/mode-toggle"
 import { UserProfile } from "./user-profile"
 import { NavBarProps, NavItem, SubMenuProps, hasSubmenu } from "./types"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import { Button } from "@/components/ui/button"
 
-// Desktop-specific navigation items
 const navItems: NavItem[] = [
   {
     name: "Home",
@@ -126,7 +125,7 @@ function SubMenu({ items, show, onClose }: SubMenuProps) {
 }
 
 export function DesktopNav({ className }: NavBarProps) {
-  const pathname = usePathname()
+  const [activeTab, setActiveTab] = useState(navItems[0].name)
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
 
   // Mock auth state - replace with your auth logic
@@ -155,7 +154,7 @@ export function DesktopNav({ className }: NavBarProps) {
               <nav className="flex items-center gap-1">
                 {navItems.map((item) => {
                   const Icon = item.icon!
-                  const isActive = pathname === item.url || pathname.startsWith(item.url + "/")
+                  const isActive = activeTab === item.name
                   const itemHasSubmenu = hasSubmenu(item)
 
                   return (
@@ -165,6 +164,7 @@ export function DesktopNav({ className }: NavBarProps) {
                           <Link
                             href={itemHasSubmenu ? "#" : item.url}
                             onClick={() => {
+                              setActiveTab(item.name)
                               if (itemHasSubmenu) {
                                 setOpenSubmenu(openSubmenu === item.name ? null : item.name)
                               } else {
@@ -225,6 +225,11 @@ export function DesktopNav({ className }: NavBarProps) {
             <div className="flex items-center gap-6">
               <div className="h-5 w-px bg-border/40" />
               <ModeToggle />
+              {!isAuthenticated && (
+                <Button href="/login" variant="ghost" size="sm">
+                  Login
+                </Button>
+              )}
               <UserProfile user={user} />
             </div>
           </div>

@@ -2,17 +2,17 @@ import type { Metadata } from "next"
 import { HeroSection } from "@/components/sections/hero-section"
 
 export const metadata: Metadata = {
-  title: "E-News - Your Digital News Platform",
-  description: "Stay informed with breaking news, in-depth stories, and personalized content tailored to your interests.",
+  title: "E-News Paper - Your Digital News Platform",
+  description: "Experience news like never before with real-time updates, trending stories, and in-depth coverage right at your fingertips.",
   openGraph: {
-    title: "E-News - Your Digital News Platform",
-    description: "Stay informed with breaking news, in-depth stories, and personalized content tailored to your interests.",
+    title: "E-News Paper - Your Digital News Platform",
+    description: "Experience news like never before with real-time updates, trending stories, and in-depth coverage right at your fingertips.",
     images: [
       {
-        url: "/images/og-image.jpg", // This will fallback to Next.js defaults if missing
+        url: "/images/news-preview-light.png",
         width: 1200,
         height: 630,
-        alt: "E-News Platform Preview",
+        alt: "E-News Paper Platform Preview",
       },
     ],
   },
@@ -21,22 +21,22 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <HeroSection 
+      <HeroSection
         title="Your Digital News Platform"
         subtitle={{
-          regular: "Breaking news and ",
-          gradient: "engaging stories",
+          regular: "Stay informed with ",
+          gradient: "E-News Paper",
         }}
-        description="Experience journalism reimagined with our cutting-edge digital news platform. Get real-time updates, personalized content, and comprehensive coverage of the stories that matter to you."
-        ctaText="Start Reading"
+        description="Experience news like never before. Get real-time updates, trending stories, and in-depth coverage right at your fingertips. Your one-stop destination for all things news, curated just for you."
+        ctaText="Explore News"
         ctaHref="/news"
         secondaryCta={{
-          text: "Try Interactive Canvas",
-          href: "/interactive-canvas"
+          text: "Discover More",
+          href: "/discover"
         }}
         bottomImage={{
-          light: "/next.svg",
-          dark: "/vercel.svg",
+          light: "/images/news-preview-light.png",
+          dark: "/images/news-preview-light.png",
         }}
       />
     </main>
