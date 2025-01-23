@@ -225,11 +225,7 @@ export function DesktopNav({ className }: NavBarProps) {
             <div className="flex items-center gap-6">
               <div className="h-5 w-px bg-border/40" />
               <ModeToggle />
-              {!isAuthenticated && (
-                <Button href="/login" variant="ghost" size="sm">
-                  Login
-                </Button>
-              )}
+
               <UserProfile user={user} />
             </div>
           </div>
