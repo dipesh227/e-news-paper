@@ -69,9 +69,9 @@ export function Footer() {
                   type="submit"
                   variant="icon"
                   size="icon"
-                  className="absolute right-1 top-1 hover:scale-105 transition-transform"
+                  className="absolute right-1 top-1 hover:scale-105 transition-all duration-300 ease-in-out bg-gradient-to-r from-primary via-info to-primary bg-[length:200%] hover:animate-button-gradient active:animate-button-pop"
                 >
-                  <Send className="h-3.5 w-3.5" />
+                  <Send className="h-3.5 w-3.5 text-primary-foreground" />
                   <span className="sr-only">Subscribe</span>
                 </Button>
               </div>

@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -69,17 +69,31 @@ const config = {
         },
         grid: {
           "0%": { transform: "translateY(0)" },
-          "100%": { transform: "translateY(calc(var(--cell-size) * -1))" }
-        }
+          "100%": { transform: "translateY(calc(var(--cell-size) * -1))" },
+        },
+        "button-gradient": {
+          "0%, 100%": {
+            backgroundPosition: "0% 50%",
+          },
+          "50%": {
+            backgroundPosition: "100% 50%",
+          },
+        },
+        "button-pop": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(0.98)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "grid": "grid 20s linear infinite",
+        grid: "grid 20s linear infinite",
+        "button-gradient": "button-gradient 3s ease infinite",
+        "button-pop": "button-pop 0.3s ease-in-out",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
-} satisfies Config
+  plugins: [import("tailwindcss-animate")],
+} satisfies Config;
 
-export default config
+export default config;
