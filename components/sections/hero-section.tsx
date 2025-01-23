@@ -14,6 +14,10 @@ interface HeroSectionProps extends React.HTMLAttributes<HTMLDivElement> {
   description?: string
   ctaText?: string
   ctaHref?: string
+  secondaryCta?: {
+    text: string
+    href: string
+  }
   bottomImage?: {
     light: string
     dark: string
@@ -70,8 +74,9 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
       description = "Experience journalism reimagined. Get real-time updates, personalized content, and comprehensive coverage of the stories that matter to you.",
       ctaText = "Start Reading",
       ctaHref = "/news",
+      secondaryCta,
       bottomImage = {
-        light: "/vercel.svg", // Fallback to Next.js default images
+        light: "/vercel.svg",
         dark: "/next.svg",
       },
       gridOptions,
@@ -99,7 +104,7 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
               <p className="max-w-2xl mx-auto text-gray-600 dark:text-gray-300">
                 {description}
               </p>
-              <div className="items-center justify-center gap-x-3 space-y-3 sm:flex sm:space-y-0">
+              <div className="flex items-center justify-center gap-x-4 space-y-3 sm:space-y-0">
                 <span className="relative inline-block overflow-hidden rounded-full p-[1.5px]">
                   <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
                   <div className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-white dark:bg-gray-950 text-xs font-medium backdrop-blur-3xl">
@@ -111,6 +116,16 @@ const HeroSection = React.forwardRef<HTMLDivElement, HeroSectionProps>(
                     </a>
                   </div>
                 </span>
+
+                {secondaryCta && (
+                  <a
+                    href={secondaryCta.href}
+                    className="inline-flex items-center justify-center rounded-full bg-primary/10 hover:bg-primary/20 text-primary px-6 py-4 text-sm font-medium transition-colors"
+                  >
+                    {secondaryCta.text}
+                    <ChevronRight className="ml-2 h-4 w-4" />
+                  </a>
+                )}
               </div>
             </div>
             {bottomImage && (

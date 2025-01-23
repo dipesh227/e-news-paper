@@ -1,36 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📰 E-News-Paper
 
-## Getting Started
+A modern, responsive digital newspaper platform built with Next.js 14 and TypeScript.
 
-First, run the development server:
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Next JS](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
+## 🌟 Features
+
+- 📱 Responsive design with mobile-first approach
+- 🌓 Dark/Light mode support
+- 🧭 Modern navigation system
+- 👤 User profile integration
+- 🎨 Customizable UI components
+- 🌐 Social media integration
+
+## 🛠️ Tech Stack
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Components:** Custom UI components
+- **Icons:** SVG icons
+- **Font:** Geist (Vercel's font)
+
+## 📁 Project Structure
+
+```
+├── app/                  # Next.js app directory
+│   ├── globals.css      # Global styles
+│   ├── layout.tsx       # Root layout
+│   └── page.tsx         # Home page
+├── components/          
+│   ├── navigation/      # Navigation components
+│   ├── sections/        # Page sections
+│   └── ui/             # Reusable UI components
+├── lib/                 # Utility functions
+└── public/             # Static assets
+```
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (recommended) or npm
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+git clone <repository-url>
+cd e-news-paper
+```
+
+2. Install dependencies
+```bash
+pnpm install
+```
+
+3. Run the development server
+```bash
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Development
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Key Components
 
-## Learn More
+- **NavBar (`components/navigation/nav-bar.tsx`)**: Main navigation component with mobile and desktop versions
+- **UserProfile (`components/navigation/user-profile.tsx`)**: User profile management
+- **HeroSection (`components/sections/hero-section.tsx`)**: Main landing section
+- **UI Components**: Button, Input, Label, Switch, Tooltip, and SocialIcon components
 
-To learn more about Next.js, take a look at the following resources:
+### Styling
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Utilizes Tailwind CSS for responsive design
+- Custom components.json for component configurations
+- PostCSS configuration for optimal CSS processing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### TypeScript Configuration
 
-## Deploy on Vercel
+- Strict type checking enabled
+- Path aliases configured for better imports
+- Next.js specific types included
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🌐 Deployment
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The application can be easily deployed on Vercel:
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/yourusername/e-news-paper)
+
+For other deployment options, check the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+## 📝 Contributing
+
+Contributions are welcome! Please read our contributing guidelines to get started.
+
+## 📜 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

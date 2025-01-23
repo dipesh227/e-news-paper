@@ -28,8 +28,14 @@ export default function Home() {
           gradient: "engaging stories",
         }}
         description="Experience journalism reimagined with our cutting-edge digital news platform. Get real-time updates, personalized content, and comprehensive coverage of the stories that matter to you."
+        ctaText="Start Reading"
+        ctaHref="/news"
+        secondaryCta={{
+          text: "Try Interactive Canvas",
+          href: "/interactive-canvas"
+        }}
         bottomImage={{
-          light: "/next.svg", // Using Next.js default images as fallbacks
+          light: "/next.svg",
           dark: "/vercel.svg",
         }}
       />
