@@ -18,7 +18,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "E-News Paper",
   description: "Your daily news platform",
-  viewport: "width=device-width, initial-scale=1, viewport-fit=cover",
+  metadataBase: new URL('http://localhost:3000'),
+  openGraph: {
+    title: "E-News Paper",
+    description: "Your daily news platform",
+    type: "website"
+  },
+  twitter: {
+    title: "E-News Paper",
+    description: "Your daily news platform",
+    card: "summary_large_image"
+  }
+}
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover"
 }
 
 export default function RootLayout({
@@ -27,9 +43,9 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-background font-sans antialiased overflow-x-hidden`}
       >
         <ThemeProvider
           attribute="class"
@@ -37,9 +53,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
+          <div className="relative flex min-h-screen flex-col overflow-x-hidden">
             <NavBar />
-            <main className="flex-1">
+            <main className="flex-1 mt-16">
               {children}
             </main>
             <Footer />

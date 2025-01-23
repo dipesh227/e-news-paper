@@ -102,7 +102,7 @@ export function MobileNav({ className }: NavBarProps) {
               {isAuthenticated ? (
                 <UserProfile user={user} />
               ) : (
-                <Link 
+                <Link
                   href="/login"
                   className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium rounded-full transition-colors hover:bg-primary/5 text-primary"
                 >
@@ -159,7 +159,7 @@ export function MobileNav({ className }: NavBarProps) {
                 </nav>
 
                 {/* Brand Section */}
-                <div className="mt-6 mb-24 px-4">
+                <div className="mt-6 px-4">
                   <div className="flex flex-col items-center space-y-2 p-4 rounded-lg bg-gradient-to-br from-primary/5 to-purple-500/5">
                     <motion.div
                       initial={{ scale: 0.95 }}
@@ -176,8 +176,8 @@ export function MobileNav({ className }: NavBarProps) {
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="fixed bottom-[72px] left-0 right-0 p-4 bg-background/95 border-t border-border/40"
+                    transition={{ delay: 0.2 }}
+                    className="mt-4 px-4"
                   >
                     <Link
                       href="/register"
@@ -188,6 +188,7 @@ export function MobileNav({ className }: NavBarProps) {
                     </Link>
                   </motion.div>
                 )}
+
               </div>
             </div>
           </motion.div>
@@ -207,7 +208,7 @@ export function MobileNav({ className }: NavBarProps) {
                   onClick={() => setActiveTab(item.name)}
                 />
               ))}
-              
+
               <div className="relative">
                 <div className="absolute left-1/2 -translate-x-1/2 -top-6">
                   <div className="p-1.5 rounded-full bg-background/60 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-border/40">
@@ -246,7 +247,7 @@ interface NavButtonProps {
 
 const NavButton: React.FC<NavButtonProps> = ({ item, isActive, onClick, className }) => {
   const Icon = item.icon!;
-  
+
   return (
     <Link
       href={item.url}
