@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <main>
       <HeroSection
-        title="Your Digital News Platform"
+        title="Your Digital News Platforms"
         subtitle={{
           regular: "Stay informed with ",
           gradient: "E-News Paper",
